@@ -13,7 +13,7 @@ var myInput = Keybind.define.element("form input[type='text']");
 //Here you can define some configurations that will be applied in all functions binded in myInput
 myInput.config({bubble: false});
 
-//Defining a function separately you can define default configs and bind it to various elements
+//Defining a function separately, you can define default configs and bind it to various elements
 var myFunction = Keybind.define.execute(function(param1) {
 	console.log(param1);
 });
@@ -22,7 +22,7 @@ var myFunction = Keybind.define.execute(function(param1) {
 myFunction.config({bubble: true});
 
 //Binding all together
-myInput.execute(myFunction).when("ALT+KEY_C");
+myInput.execute(myFunction, "Hey, you pressed ALT + C.").when("ALT+KEY_C");
 
 ```
 
