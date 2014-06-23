@@ -24,7 +24,9 @@ myFunction.config({bubble: true});
 //Binding all together
 myInput.execute(myFunction, "Hey, you pressed ALT + C.").when("ALT+KEY_C");
 
+
 ```
+##### More complex definitions of shortcuts (with expressions) will come soon.
 
 ## Do you want to suggest another syntax?
 
