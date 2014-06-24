@@ -42,7 +42,6 @@ Keybind.config({
 	this: Window,
 
 	computeKeyUp: true,
-	computeKeyDown: true,
 
 	executeOnKeyUp: false,
 	executeOnKeyDown: true,
@@ -50,7 +49,9 @@ Keybind.config({
 	resetComputeAfterExecute: true,
 
 	notOverride: ['propagation'],
-	keyboard: false,
+	/*keyboard: yourKeyboard,*/
+
+	debug: false
 });
 ```
 
