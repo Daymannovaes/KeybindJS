@@ -21,14 +21,29 @@ var myFunction = Keybind.define.function(function(param1) {
 //When you bind this function in myInput, the default "bubble: false" will be overwritten for this function
 myFunction.config({propagation: true});
 
-//Binding all together
+//Here, the magic happens
 myInput.execute(myFunction, "Hey, you pressed ALT + C.").when("ALT+KEY_C");
 ```
 
-##### More complex definitions of shortcuts (with expressions) will come soon.
+## Do whatever you want with complex shortcuts
+
+* Parentesis example
+```javascript
+...when("ALT & (KEY_1 | KEY_2 | KEY_3)"); //alt+1, alt+2 and alt+3 will trigger
+...when("(CONTROL | SHIFT) & (KEY_Z | KEY_X)"); //control+z, control+y, shift+z and shift+y will trigger
+```
+
+* Not and Xor operator
+```javascript
+...when("ALT & KEY_1 & !(KEY_A & KEY_B)"); //alt+1 will trigger, but only if you aren't pressing A and B
+
+//xor operator returns true if both are equals, that is, 0 and 0 or 1 and 1.
+...when("ALT & (CONTROL ^ SHIFT)"); //alt and alt+control+shift will trigger
+```
 
 
-## You can do whatever you want with advanced configs
+
+## Do whatever you want with advanced configs
 
 * Define defaults for the whole document
 * Define defaults for an especific element
@@ -51,7 +66,7 @@ Keybind.config({
 	notOverride: ['propagation'],
 	/*keyboard: yourKeyboard,*/
 
-	debug: false
+	logLevel: 'none'
 });
 ```
 
