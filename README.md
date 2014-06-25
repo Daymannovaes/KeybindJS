@@ -29,16 +29,22 @@ myInput.execute(myFunction, "Hey, you pressed ALT + C.").when("ALT+KEY_C");
 
 * Parentesis example
 ```javascript
-...when("ALT & (KEY_1 | KEY_2 | KEY_3)"); //alt+1, alt+2 and alt+3 will trigger
-...when("(CONTROL | SHIFT) & (KEY_Z | KEY_X)"); //control+z, control+y, shift+z and shift+y will trigger
+//alt+1, alt+2 and alt+3 will trigger
+...when("ALT & (KEY_1 | KEY_2 | KEY_3)");
+
+//control+z, control+y, shift+z and shift+y will trigger
+...when("(CONTROL | SHIFT) & (KEY_Z | KEY_X)");
 ```
 
 * Not and Xor operator
 ```javascript
-...when("ALT & KEY_1 & !(KEY_A & KEY_B)"); //alt+1 will trigger, but only if you aren't pressing A and B
+//alt+1 will trigger, but only if you aren't pressing A and B
+...when("ALT & KEY_1 & !(KEY_A & KEY_B)");
 
 //xor operator returns true if both are equals, that is, 0 and 0 or 1 and 1.
-...when("ALT & (CONTROL ^ SHIFT)"); //alt and alt+control+shift will trigger
+
+//alt and alt+control+shift will trigger
+...when("ALT & (CONTROL ^ SHIFT)"); 
 ```
 
 
