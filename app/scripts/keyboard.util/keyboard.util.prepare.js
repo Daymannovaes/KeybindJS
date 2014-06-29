@@ -1,3 +1,5 @@
+'use strict';
+
 keyboard.util.prepare = {
 	keySequence: function(keySequence) {
 		if(keySequence instanceof Object)
@@ -13,7 +15,7 @@ keyboard.util.prepare = {
 		throw("Uknow type \"" + typeof keySequence + "\" for key sequence: " + keySequence);
 	},
 	keySequenceAsString: function(keySequence) {
-		keys = keySequence.split("+");
+		var keys = keySequence.split("+");
 
 		keys = keys.map(function(key) {
 			return key.trim();
@@ -22,7 +24,9 @@ keyboard.util.prepare = {
 		return keyboard.util.prepare.keySequenceAsArray(keys);
 	},
 	keySequenceAsArray: function(keySequence) {
-		objectKeySequence = {};
+		var objectKeySequence = {},
+			key, value,
+			i;
 
 		for(i=0; i<keySequence.length; i++) {
 			key = keySequence[i];

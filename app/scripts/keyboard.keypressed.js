@@ -1,3 +1,5 @@
+'use strict';
+
 keyboard.keypressed = {
 	BACKSPACE: false,
 	TAB: false,
