@@ -7,17 +7,27 @@ var Keybind = (function() {
 	//private
 	var $private = {};
 
-	$private.executes = [];
-	$private.elements = [];
+	$private.functions = {
+		$template: {
+			$functions: []
+		},
+		$functions: [],
+	};
+	$private.elements = {
+		$template: {
+			$elements: []
+		},
+		$elements: []
+	};
 
 	//fake private
 	/*
 	 * Classes
 	 */
-	$Keybind.Execute = function(namespace, fn) {
+	$Keybind.$Function = function(namespace, fn) {
 
 	};
-	$Keybind.Element = function(namespace, fn) {
+	$Keybind.$Element = function(namespace, fn) {
 
 	};
 
@@ -26,17 +36,19 @@ var Keybind = (function() {
 	$Keybind.get = {};
 
 
-	$Keybind.define.execute = function(namespace, fn) {
+	$Keybind.define.function = function(namespace, fn) {
 		Keybind.throw.all.by.type([namespace, fn], ["string", "function"]);
 
-		var execute = new $Keybind.Execute(namespace, fn);
+		
 
-		$private.executes.push(execute);
+		var fn = new $Keybind.$Function(namespace, fn);
 
-		return execute;
+		$private.functions.push(fn);
+
+		return fn; 
 	};
 	$Keybind.define.element = function(selector) {
-		var element = new $Keybind.Element(selector);
+		var element = new $Keybind.$Element(selector);
 
 		$private.elements.push(element);
 
@@ -44,12 +56,12 @@ var Keybind = (function() {
 	};
 
 
-	$Keybind.get.execute = function(namespace) {
+	$Keybind.get.function = function(namespace) {
 
 	};
 
-	$Keybind.get.executes = function() {
-		return $private.executes;
+	$Keybind.get.functions = function() {
+		return $private.functions;
 	};
 
 	$Keybind.get.element = function(namespace) {

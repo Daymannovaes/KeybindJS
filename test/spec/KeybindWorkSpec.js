@@ -1,8 +1,8 @@
 describe("work#Keybind", function() {
 
 	afterEach(function() {
-		Keybind.reset.all();
-	});
+		Keybind.reset.all(); 
+	}); 
 
 	describe(".reset", function() {
 		it("should reset all Keybind instance", function() {
@@ -10,7 +10,7 @@ describe("work#Keybind", function() {
 
 			expect(Keybind.something).not.toBe(undefined);
 
-			Keybind.reset.all();
+			Keybind.reset.all(); 
 
 			expect(Keybind.something).toBe(undefined);
 
@@ -24,7 +24,7 @@ describe("work#Keybind", function() {
 					Keybind.throw.by.type({
 						param: undefined,
 					});
-				}).toThrow();
+				}).toThrow(); 
 
 				expect(function() {
 					Keybind.throw.by.type({
@@ -135,22 +135,22 @@ describe("work#Keybind", function() {
 
 	describe(".define", function() {
 
-		describe(".execute", function() {
+		describe(".function", function() {
 
-			it("should return a Keybind.Execute", function() {
-				expect(Keybind.define.execute("", function(){}) instanceof Keybind.Execute).toEqual(true);
+			it("should return a Keybind.Function", function() {
+				expect(Keybind.define.function("", function(){}) instanceof Keybind.Function).toEqual(true);
 			});
 
 
 			it("should throw an error if namespace isn't string", function() {
 				expect(function() {
-					Keybind.define.execute(1);
+					Keybind.define.function(1);
 				}).toThrow();
 			});
 
-			it("should throw an error if function isn't a function", function() {
+			it("should throw an error if second parameter isn't a function", function() {
 				expect(function() {
-					Keybind.define.execute("", 1);
+					Keybind.define.function("", 1);
 				}).toThrow();
 			});
 
@@ -166,21 +166,21 @@ describe("work#Keybind", function() {
 
 	describe(".get", function() {
 
-		describe(".execute", function() {
+		describe(".function", function() {
 
-			it(".get.executes length should be one after define one execute", function() {
-				Keybind.define.execute("namespace", function(){});
+			it(".get.functions length should be one after define one function", function() {
+				Keybind.define.function("namespace", function(){});
 
-				expect(Keybind.get.executes().length).toEqual(1);
-			});
+				expect(Keybind.get.functions().length).toEqual(1);
+			}); 
 
 			it("should return properly by namespace", function() {
 				var emptyFn = function() {};
-				Keybind.define.execute("path", emptyFn);
-				Keybind.define.execute("path.to", emptyFn);
-				Keybind.define.execute("path.to.namespace", emptyFn);
+				Keybind.define.function("path", emptyFn);
+				Keybind.define.function("path.to", emptyFn);
+				Keybind.define.function("path.to.namespace", emptyFn);
 
-				expect(Keybind.get.execute("path").to).not.toBe(undefined);
+				expect(Keybind.get.function("path").to).not.toBe(undefined);
 			});
 	});
 

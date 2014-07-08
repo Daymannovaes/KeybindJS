@@ -1,9 +1,7 @@
 console.log('\'Allo \'Allo!');
 
-require(['keyboard']);
-require(['keyboard.keys']);
-require(['keyboard.keypressed']);
-
-require(['keyboard.util/keyboard.util']);
-require(['keyboard.util/keyboard.util.prepare']);
-require(['keyboard.util/keyboard.util.set']);
+require(['../libs/clone'], function() {
+	require(['keybind'], function() {
+		require(['keybind.throw', 'keybind.namespace']);
+	});
+});
