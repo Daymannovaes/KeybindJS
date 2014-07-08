@@ -3,7 +3,6 @@ KeybindJS
 
 A mini Javascript Framework to configure what you want to execute when determined key sequence occurs. 
 
-
 ## How can I use?
 
 ```javascript
@@ -18,7 +17,7 @@ var myFunction = Keybind.define.function(function(param1) {
 	console.log(param1);
 });
 
-//When you bind this function in myInput, the default "bubble: false" will be overwritten for this function
+//When you bind this function in myInput, the default "propagation: false" will be overwritten for this function
 myFunction.config({propagation: true});
 
 //Here, the magic happens
@@ -36,7 +35,7 @@ myInput.execute(myFunction, "Hey, you pressed ALT + C.").when("ALT+KEY_C");
 ...when("(CONTROL | SHIFT) & (KEY_Z | KEY_X)");
 ```
 
-* Not and Xor operator
+* Not and xor operator
 ```javascript
 //alt+1 will trigger, but only if you aren't pressing A and B
 ...when("ALT & KEY_1 & !(KEY_A & KEY_B)");
@@ -46,8 +45,6 @@ myInput.execute(myFunction, "Hey, you pressed ALT + C.").when("ALT+KEY_C");
 //alt and alt+control+shift will trigger
 ...when("ALT & (CONTROL ^ SHIFT)"); 
 ```
-
-
 
 ## Do whatever you want with advanced configs
 
@@ -75,7 +72,6 @@ Keybind.config({
 	logLevel: 'none'
 });
 ```
-
 ###### More config explanations will appear soon
 
 
@@ -83,3 +79,8 @@ Keybind.config({
 
 For now, KeybindJS is opened to various changes and is opened to suggestions.
 Will be great if you can contribute to. Thanks!
+
+
+###### One of first developing
+
+![](http://i.imgur.com/4izKCM2.png)

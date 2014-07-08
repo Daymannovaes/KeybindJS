@@ -1,3 +1,5 @@
+'use strict';
+
 keyboard.keys = {
 	BACKSPACE: 8,
 	TAB: 9,

@@ -27,6 +27,21 @@ module.exports = function (grunt) {
         // Project settings
         config: config,
 
+        concat: {
+            options: {
+                separator: ';',
+            },
+            dist: {
+                src: ['app/scripts/keyboard.js',
+                      'app/scripts/keyboard.keypressed.js',
+                      'app/scripts/keyboard.keys.js',
+                      'app/scripts/keyboard.util/keyboard.util.js',
+                      'app/scripts/keyboard.util/keyboard.util.prepare.js',
+                      'app/scripts/keyboard.util/keyboard.util.set.js'],
+                dest: 'app/build.js',
+            },
+        },
+
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             bower: {

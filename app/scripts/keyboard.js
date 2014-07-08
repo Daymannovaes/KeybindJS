@@ -1,4 +1,6 @@
-keyboard = {};
+'use strict';
+
+var keyboard = {};
 
 
 //use as execute(function() {window.close}).when(['ALT', 'F4']).match() or
@@ -11,9 +13,9 @@ keyboard = {};
 */
 
 keyboard.execute = function(callback, params) {
-	var context;	
+	var context;
 
-	when = function(keySequence) {
+	var when = function(keySequence) {
 
 		keySequence = keyboard.util.prepare.keySequence(keySequence);
 
@@ -26,16 +28,17 @@ keyboard.execute = function(callback, params) {
 				if(!keyboard.util.matchSequence(keySequence))
                     callback.call(context || this, params);
 			}
-		}
+		};
 	};
 
 	return {
-        in: function(temporary_context) {
-            context = temporary_context;
+        in: function(temporaryContext) {
+            context = temporaryContext;
 
             return {
                 when: when
-            }
+            };
         },
-		when: when;
-	}
+		when: when,
+	};
+};
