@@ -1,27 +1,27 @@
 KeybindJS
 =========
 
-A mini Javascript Framework to configure what you want to execute when determined key sequence occurs. 
+A simple JavaScript framework to capture key sequence events and trigger determined functions.
 
-## How can I use?
+## Usage
 
 ```javascript
-//Define the element you want to bind your keys with jquery sintax
-var myInput = Keybind.define.element("form input[type='text']");
+//Define the element you want to bind your keys to
+var myInput = Keybind.define.$element("form input[type='text']");
 
-//Here you can define some configurations that will be applied in all functions binded in myInput
+//Set up configurations that will be applied to all functions binded to myInput
 myInput.config({propagation: false});
 
-//Defining a function separately, you can define default configs and bind it to various elements
-var myFunction = Keybind.define.function(function(param1) {
+//By defining a function separately, you can define default configs and bind it to various elements
+var myFunction = Keybind.define.$function(function(param1) {
 	console.log(param1);
 });
 
-//When you bind this function in myInput, the default "propagation: false" will be overwritten for this function
+//When you bind this function in myInput, the default "propagation: false" will be overwritten by this function
 myFunction.config({propagation: true});
 
 //Here, the magic happens
-myInput.execute(myFunction, "Hey, you pressed ALT + C.").when("ALT+KEY_C");
+myInput.when("ALT+KEY_C").execute(myFunction, "Hey, you pressed ALT + C.");
 ```
 
 ## Do whatever you want with complex shortcuts
@@ -29,21 +29,21 @@ myInput.execute(myFunction, "Hey, you pressed ALT + C.").when("ALT+KEY_C");
 * Parentesis example
 ```javascript
 //alt+1, alt+2 and alt+3 will trigger
-...when("ALT & (KEY_1 | KEY_2 | KEY_3)");
+.when("ALT & (KEY_1 | KEY_2 | KEY_3)")...
 
 //control+z, control+y, shift+z and shift+y will trigger
-...when("(CONTROL | SHIFT) & (KEY_Z | KEY_X)");
+.when("(CONTROL | SHIFT) & (KEY_Z | KEY_X)")...
 ```
 
 * Not and xor operator
 ```javascript
 //alt+1 will trigger, but only if you aren't pressing A and B
-...when("ALT & KEY_1 & !(KEY_A & KEY_B)");
+.when("ALT & KEY_1 & !(KEY_A & KEY_B)")...
 
-//xor operator returns true if both are equals, that is, 0 and 0 or 1 and 1.
+//xor operator returns true if both are different, that is, 0 and 1 or 1 and 0.
 
-//alt and alt+control+shift will trigger
-...when("ALT & (CONTROL ^ SHIFT)"); 
+//alt+control and alt+shift will trigger
+.when("ALT & (CONTROL ^ SHIFT)")...
 ```
 
 ## Do whatever you want with advanced configs
@@ -55,24 +55,24 @@ myInput.execute(myFunction, "Hey, you pressed ALT + C.").when("ALT+KEY_C");
 
 ```javascript
 Keybind.config({
-	propagation: true,
+	propagation: true, /* do you want that the keydown propagates to the children? */
 
-	this: Window,
+	this: Window, /* what is the context? */
 
-	computeKeyUp: true,
+	executeOnKeyUp: false, /* do you want the event occurs in keyup? */
+	executeOnKeyDown: true, /* do you want the event occurs in keydown? */
 
-	executeOnKeyUp: false,
-	executeOnKeyDown: true,
+	computeKeyUp: true, /* Maybe you want to store the pressed keys, by setting this to false */
+	resetComputeAfterExecute: true, /* if you choose to maintain key pressed, probably you want to reset after execute the function */
 
-	resetComputeAfterExecute: true,
+	notOverride: ['propagation'], /* Those properties doesn't be overwritten by functions or elements */
+	keyboard: yourKeyboard, /* Defining a keyboard is util for diferent layouts, and to share keys between elements and functions */
 
-	notOverride: ['propagation'],
-	/*keyboard: yourKeyboard,*/
-
-	logLevel: 'none'
+	logLevel: 'none' /* none, error, warning, info, debug */
 });
 ```
-###### More config explanations will appear soon
+
+##### More about the "define" function and the "when|execute" functions soon 
 
 
 ## Do you want to suggest another syntax?
